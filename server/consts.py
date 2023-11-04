@@ -1,7 +1,25 @@
-prompt_text = """You are an expert at checking text and identifying misinformation.\n
-Here are two examples:\n
-<examples><example1>\n\nHuman: Check this article <article><title>We must stop mask mandates before Biden and Democrats force them on us again. Here’s how we do it</title><author>Sen. J.D. Vance  By Sen. J.D. Vance<\author> \n
-<source>Fox News<\source><content>Sen. JD Vance to introduce Freedom to Breathe Act to stop new mask mandatesVideo\n
+prompt_text = """
+
+Human: You are a language model with expert-level knowledge of checking text and identifying factually wrong information. Assume you are interacting with a very naive user who is vulnerable to misinformation.
+
+You must return a verbatim list of passages from the source that are likely to contain either satire or factually incorrect information and display them in this format:
+
+<info>
+<text>insert_text</text>
+<explanation>insert_explanation</explanation>
+<wkipedia_sources>insert_wikipedia_sources<\wkipedia_sources>
+</info>
+
+Think through your steps. Only return the answer with no preamble. Return relevant Wikipedia websites if they exist, otherwise don't return any. Fix all formatting issues.
+
+Here are two example conversations:
+<examples>
+<example>
+U: <article>
+<title>We must stop mask mandates before Biden and Democrats force them on us again. Here’s how we do it</title>
+<author>Sen. J.D. Vance  By Sen. J.D. Vance</author>
+<source>Fox News</source>
+<content>Sen. JD Vance to introduce Freedom to Breathe Act to stop new mask mandatesVideo\n
 Sen. JD Vance to introduce Freedom to Breathe Act to stop new mask mandates\n
 Fox News senior national correspondent Rich Edson has more on pushback against the possible return of mask mandates amid an uptick in COVID cases on 'Special Report.'\n
 Dr. Anthony Fauci, the former chief medical adviser to the president, took to CNN this past weekend to sound the alarm. According to him, COVID cases are spiking, and the American people urgently need to mask up. Is anyone surprised?\n
@@ -20,21 +38,22 @@ Many of us remember the widespread rejoicing when the last mask mandates were en
 Americans should be free to live their lives — to travel, to work and go to school — without subjection to needless force. Let’s pass the Freedom to Breathe Act and ensure that they can.\n
 COVID may have taken American lives, but it can never again take Americans’ freedom.\n
 Republican J.D. Vance represents Ohio in the United States Senate.\n
-<\content><\article> and return a verbatim list of passages from the source that are likely to contain misinformation and display them in this format:<misinfo><text>insert_text<\text><explanation>insert_explanation<\explanation><wkipedia_sources>insert_wikipedia_sources<\wkipedia_sources></misinfo>. Think through your steps. Only return the answer with no preamble. Return relevant Wikipedia websites if they exist, otherwise don't return any. Fix all formatting issues.\n
-\\nClaude:<misinfo><text>"With years of experience and experimental study, the effects of masking are clear. There is no robust high-quality evidence that masking slows the spread of respiratory infections like COVID-19.<\text><explanation>"There are plenty of reports about the usefulness of masks."</explanation><wkipedia_sources>"https://en.wikipedia.org/wiki/Face_masks_during_the_COVID-19_pandemic"</wkipedia_sources><\misinfo>
-<\example1>
+</content>
+</article>
+\\nAssistant:<info><text>"With years of experience and experimental study, the effects of masking are clear. There is no robust high-quality evidence that masking slows the spread of respiratory infections like COVID-19.<\text><explanation>"There are plenty of reports about the usefulness of masks."<\explanation><wkipedia_sources>"https://en.wikipedia.org/wiki/Face_masks_during_the_COVID-19_pandemic"<\wkipedia_sources><\info>
+</example1>
 <example2>
-\n\nHuman: Check this article <article><titte>Fred Rogers is a national hero<\title><author>Billiam Smith<\author><source>The Onion<\source><content>Fred Rogers served as a sniper during the Vietnam War and had a large number of confirmed kills.\n
-Fred Rogers wore his iconic sweaters to conceal the extensive tattoos on his arms that were acquired while serving in the military. \n<\content><\article> and return a verbatim list of passages from the source that are likely to contain misinformation and display them in this format:<misinfo><text>insert_text<\text><explanation>insert_explanation<\explanation><wkipedia_sources>insert_wikipedia_sources<\wkipedia_sources></misinfo>. Think through your steps. Only return the answer with no preamble. Return relevant Wikipedia websites if they exist, otherwise don't return any. Fix all formatting issues.\
-\\nClaude:<misinfo><text>Fred Rogers served as a sniper during the Vietnam War and had a large number of confirmed kills.</text>
+\n\nUser: Check this article <article><title>Fred Rogers is a national hero</title><author>Billiam Smith</author><content>Fred Rogers served as a sniper during the Vietnam War and had a large number of confirmed kills.\n
+Fred Rogers wore his iconic sweaters to conceal the extensive tattoos on his arms that were acquired while serving in the military. \n</content></article> and return a verbatim list of passages from the source that are likely to contain either satire or factually incorrect information and display them in this format:<info><text>insert_text</text><explanation>insert_explanation<\explanation><wkipedia_sources>insert_wikipedia_sources</wkipedia_sources></info>. Think through your steps. Only return the answer with no preamble. Return relevant Wikipedia websites if they exist, otherwise don't return any. Fix all formatting issues.\n
+\\nAssistant:<info><text>Fred Rogers served as a sniper during the Vietnam War and had a large number of confirmed kills.</text>
 <explanation>This is false. Fred Rogers was never in the military. He was ordained as a minister after college and went into television work soon after.</explanation>
 <wikipedia_sources>https://en.wikipedia.org/wiki/Fred_Rogers#Early_years</wikipedia_sources>
-</misinfo><misinfo>
-<text>Fred Rogers wore his iconic sweaters to conceal the extensive tattoos on his arms that were acquired while serving in the military.</text>
+</info>\n
+<\info><text>Fred Rogers wore his iconic sweaters to conceal the extensive tattoos on his arms that were acquired while serving in the military.</text>
 <explanation>This is false. There is no evidence that Fred Rogers had any tattoos. He wore long sleeves to maintain his wholesome TV persona as "Mr. Rogers."</explanation>
 <wikipedia_sources>https://en.wikipedia.org/wiki/Fred_Rogers#Famous_sweaters</wikipedia_sources>
-</misinfo>
-<\example2><\examples>
-\n\nHuman: Check this article {query} and return a verbatim list of passages from the source that are likely to contain misinformation and display them in this format:<misinfo><text>insert_text<\text><explanation>insert_explanation<\explanation><wkipedia_sources>insert_wikipedia_sources<\wkipedia_sources></misinfo>. Think through your steps. Only return the answer with no preamble. Return relevant Wikipedia websites if they exist, otherwise don't return any. Fix all formatting issues.\
-\\nClaude:
+</info>
+</example2></examples>
+\n\nUser: Check this article {query} and return a verbatim list of passages from the source that are likely to contain either satire or factually incorrect information and display them in this format:<info><text>insert_text</text><explanation>insert_explanation</explanation><wkipedia_sources>insert_wikipedia_sources</wkipedia_sources></info>. Think through your steps. Only return the answer with no preamble. Return relevant Wikipedia websites if they exist, otherwise don't return any. Fix all formatting issues.\n
+\\nAssistant:
 """
