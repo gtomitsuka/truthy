@@ -60,16 +60,19 @@ function getPageHTML() {
 window.addEventListener('DOMContentLoaded', (event) => {
 	const htmlContent = getPageHTML();
 
-    fetch('http://localhost:5000/find', {
+    fetch('https://ad71-5-148-66-108.ngrok-free.app/find', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(htmlContent)
     }).then(response => response.json())
-        .then(data => observeDOMChanges(data['results']))
+        .then(data => {
+          observeDOMChanges(data['results']);
+          chrome.runtime.sendMessage({ highlightCount: data['results'].length});
+        })
         .catch(error => console.error('Error:', error));
-	//highlightText('Hamas is attempting to sneak militants out of the Gaza Strip among civilians under evacuation.');
+	// highlightText('Hamas is attempting to sneak militants out of the Gaza Strip among civilians under evacuation.');
 
 });
 
