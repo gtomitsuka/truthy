@@ -1,0 +1,4 @@
+farm-haystack[inference]
+flask
+beautifulsoup4
+flask-cors
