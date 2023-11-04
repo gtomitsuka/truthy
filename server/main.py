@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import xml.etree.ElementTree as ET
 
-from server.completion import query
+from server.completion import query, format_query
 from server.parser import get_content
 
 app = Flask(__name__)
@@ -18,8 +18,10 @@ def find():
     return jsonify({'error': 'Invalid JSON'}), 400
   try:
     title, main_text, author, source = get_content(data)
-    # TODO query
-    root = ET.fromstring(data)
+    formatted_query = format_query(title, main_text, author, source)
+    completion = query(formatted_query)
+    print(completion)
+    root = ET.fromstring(completion)
     misinfo_xml = root.findAll('.//info')
     misinfo_list = []
     for misinfo_xml_element in misinfo_xml:

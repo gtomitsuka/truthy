@@ -22,7 +22,7 @@ Here are two example conversations:
 H: <article>
 <title>We must stop mask mandates before Biden and Democrats force them on us again. Here’s how we do it</title>
 <author>Sen. J.D. Vance  By Sen. J.D. Vance</author>
-<source>Fox News</source>
+<source>foxnews.com</source>
 <content>Sen. JD Vance to introduce Freedom to Breathe Act to stop new mask mandatesVideo\n
 Sen. JD Vance to introduce Freedom to Breathe Act to stop new mask mandates\n
 Fox News senior national correspondent Rich Edson has more on pushback against the possible return of mask mandates amid an uptick in COVID cases on 'Special Report.'\n
@@ -61,6 +61,7 @@ https://en.wikipedia.org/wiki/Face_masks_during_the_COVID-19_pandemic
 U: <article>
 <title>Fred Rogers is a national hero</title>
 <author>Billiam Smith</author>
+<source>richmond.edu</source>
 <content>Fred Rogers served as a sniper during the Vietnam War and had a large number of confirmed kills.\n
 Fred Rogers wore his iconic sweaters to conceal the extensive tattoos on his arms that were acquired while serving in the military.</content>
 </article>

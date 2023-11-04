@@ -23,5 +23,9 @@ pipeline.add_node(component=prompt_node, name="PromptNode", inputs=["Query"])
 logging.disable(logging.CRITICAL)
 
 
+def format_query(title, main_text, author, source):
+    return f"""<article>\n<title>{title}</title>\n<author>{author}</author>\n<source>{source}</source>\n<content>{main_text}</content>\n</article>"""
+
+
 def query(q):
     return pipeline.run(query=q)
