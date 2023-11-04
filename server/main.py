@@ -2,6 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import xml.etree.ElementTree as ET
 
+from server.completion import query
+from server.parser import get_content
+
 app = Flask(__name__)
 cors = CORS(app,
             resources={r"/find": {"origins": "*"}},
@@ -14,6 +17,8 @@ def find():
   if not data:
     return jsonify({'error': 'Invalid JSON'}), 400
   try:
+    title, main_text, author, source = get_content(data)
+    # TODO query
     root = ET.fromstring(data)
     misinfo_xml = root.findAll('.//info')
     misinfo_list = []
