@@ -15,12 +15,13 @@ def find():
     return jsonify({'error': 'Invalid JSON'}), 400
   try:
     root = ET.fromstring(data)
-    misinfo_xml = root.findAll('.//misinfo')
+    misinfo_xml = root.findAll('.//info')
     misinfo_list = []
     for misinfo_xml_element in misinfo_xml:
         text = misinfo_xml_element.find('.//text').text
         explanation = misinfo_xml_element.find('.//explanation').text
-        misinfo_list.append({'text': text, 'explanation': explanation})
+        sources = [source.find('.//source').text for source in misinfo_xml_element.findAll('.//sources')]
+        misinfo_list.append({'text': text, 'explanation': explanation, 'sources': sources})
     return jsonify({'results': misinfo_list}), 200
   except:
     return jsonify({'error': 'Failed to parse'}), 400
