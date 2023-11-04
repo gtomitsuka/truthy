@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import xml.etree.ElementTree as ET
+import traceback
 
 from server.completion import query, format_query
 from server.parser import get_content
@@ -19,9 +20,10 @@ def find():
   try:
     title, main_text, author, source = get_content(data)
     formatted_query = format_query(title, main_text, author, source)
+    print(formatted_query)
     completion = query(formatted_query)
     print(completion)
-    root = ET.fromstring(completion)
+    root = ET.fromstring(completion.results[0])
     misinfo_xml = root.findAll('.//info')
     misinfo_list = []
     for misinfo_xml_element in misinfo_xml:
@@ -31,6 +33,7 @@ def find():
         misinfo_list.append({'text': text, 'explanation': explanation, 'sources': sources})
     return jsonify({'results': misinfo_list}), 200
   except:
+    traceback.print_exc()
     return jsonify({'error': 'Failed to parse'}), 400
 
 
