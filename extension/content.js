@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       },
       body: JSON.stringify(htmlContent)
     }).then(response => response.json())
-        .then(data => observeDOMChanges(data))
+        .then(data => observeDOMChanges(data['results']))
         .catch(error => console.error('Error:', error));
 	//highlightText('Hamas is attempting to sneak militants out of the Gaza Strip among civilians under evacuation.');
 
