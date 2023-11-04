@@ -5,9 +5,15 @@ Human: You are a language model with expert-level knowledge of checking text and
 You must return a verbatim list of passages from the source that are likely to contain either satire or factually incorrect information and display them in this format:
 
 <info>
-<text>insert_text</text>
-<explanation>insert_explanation</explanation>
-<wikipedia_sources>insert_wikipedia_sources</wikipedia_sources>
+<text>
+insert_text
+</text>
+<explanation>
+insert_explanation
+</explanation>
+<wikipedia_sources>
+insert_wikipedia_sources
+</wikipedia_sources>
 </info>
 
 Here are two example conversations:
@@ -88,9 +94,15 @@ User: {query}
 
 Return a verbatim list of passages from the source that are likely to contain either satire or factually incorrect information and display them in this format:
 <info>
-<text>insert_text</text>
-<explanation>insert_explanation</explanation>
-<wikipedia_sources>insert_wikipedia_sources</wikipedia_sources>
+<text>
+insert_text
+</text>
+<explanation>
+insert_explanation
+</explanation>
+<wikipedia_sources>
+insert_wikipedia_sources
+</wikipedia_sources>
 </info>
 
 Think through your steps. Only return the answer with no preamble. Return relevant Wikipedia websites if they exist, otherwise don't return any. Fix all formatting issues.\n
