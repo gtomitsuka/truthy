@@ -5,6 +5,7 @@ chrome.runtime.onMessage.addListener(
       const badgeText = String(request.highlightCount);
       chrome.action.setBadgeText({ text: badgeText, tabId: sender.tab.id });
       chrome.action.setBadgeBackgroundColor({ color: '#FF0000' });
+      chrome.action.setBadgeTextColor({color: '#FFFFFF'});
     }
   }
 );

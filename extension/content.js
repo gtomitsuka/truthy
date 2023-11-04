@@ -1,4 +1,4 @@
-function highlightText(text) {
+function highlightText(text, explanation) {
   if (!text) return; // Avoid running if the text is empty
 
   const searchTextLower = text.toLowerCase();
@@ -27,9 +27,9 @@ function highlightText(text) {
     if (startPos > -1) {
       range.setStart(node, startPos);
       range.setEnd(node, startPos + searchTextLower.length);
-      const highlightSpan = document.createElement('span');
-      highlightSpan.style.backgroundColor = 'yellow';
+      const highlightSpan = document.createElement('abbr');
       highlightSpan.className = 'highlighted-text';
+      highlightSpan.dataset.title = explanation;
       range.surroundContents(highlightSpan);
 
       // Move the walker past the newly created highlightSpan
@@ -37,31 +37,40 @@ function highlightText(text) {
     }
   }
 
-  // Add click event to all highlighted spans
-  const highlightedSpans = document.querySelectorAll('.highlighted-text');
-  highlightedSpans.forEach(span => {
-    span.addEventListener('click', function() {
-      showPopup(this);
+}
+
+// Function to observe DOM changes
+function observeDOMChanges(data) {
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      data.forEach(misinfo => highlightText(misinfo['text'], misinfo['explanation']));
     });
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
   });
 }
 
-function showPopup(element) {
-  const popup = document.createElement('div');
-  popup.className = 'text-popup';
-  popup.textContent = 'This is a popup for the highlighted text!';
-  popup.style.position = 'absolute';
-  popup.style.left = `${element.getBoundingClientRect().left}px`;
-  popup.style.top = `${element.getBoundingClientRect().top + element.getBoundingClientRect().height}px`;
-  popup.style.backgroundColor = '#FFF';
-  popup.style.border = '1px solid #000';
-  popup.style.padding = '5px';
-  document.body.appendChild(popup);
+function getPageHTML() {
+  return document.documentElement.outerHTML;
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
-	console.log('reached');
-	highlightText('Before a single ballot was cast, Louisiana Democrats knew they couldn’t win control of the State Legislature this year.');
+	const htmlContent = getPageHTML();
+
+    fetch('http://localhost:5000/find', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(htmlContent)
+    }).then(response => response.json())
+        .then(data => observeDOMChanges(data['results']))
+        .catch(error => console.error('Error:', error));
 	//highlightText('Hamas is attempting to sneak militants out of the Gaza Strip among civilians under evacuation.');
+
 });
+
 

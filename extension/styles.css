@@ -1,0 +1,17 @@
+.highlighted-text {
+    background-color: yellow;
+    padding: 4px 0;
+    margin: -4px 0;
+    text-decoration: none;
+}
+
+.highlighted-text:hover:before {
+    content: attr(data-title);
+    position: absolute;
+    background: #546E7A;
+    color: #FFFFFF;
+    font-size: 16px;
+    margin: -38px 0 0 0;
+    border-radius: 4px;
+    padding: 5px 10px;
+}

@@ -1,20 +1,30 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import xml.etree.ElementTree as ET
 
 app = Flask(__name__)
+cors = CORS(app,
+            resources={r"/find": {"origins": "*"}},
+            allow_headers=['Content-Type', 'content-type'])
+
 
 @app.route('/find', methods=['POST'])
 def find():
-  data = request.data
+  data = request.json
   if not data:
     return jsonify({'error': 'Invalid JSON'}), 400
   try:
     root = ET.fromstring(data)
-    text = root.find('.//text').text
-    explanation = root.find('.//explanation').text
-    return jsonify({'text': text, 'explanation': explanation}), 200
+    misinfo_xml = root.findAll('.//misinfo')
+    misinfo_list = []
+    for misinfo_xml_element in misinfo_xml:
+        text = misinfo_xml_element.find('.//text').text
+        explanation = misinfo_xml_element.find('.//explanation').text
+        misinfo_list.append({'text': text, 'explanation': explanation})
+    return jsonify({'results': misinfo_list}), 200
   except:
-    return jsonify({}), 400
+    return jsonify({'error': 'Failed to parse'}), 400
+
 
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run(debug=True, port=5000)
