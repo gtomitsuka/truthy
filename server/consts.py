@@ -7,15 +7,13 @@ You must return a verbatim list of passages from the source that are likely to c
 <info>
 <text>insert_text</text>
 <explanation>insert_explanation</explanation>
-<wkipedia_sources>insert_wikipedia_sources<\wkipedia_sources>
+<wikipedia_sources>insert_wikipedia_sources</wikipedia_sources>
 </info>
-
-Think through your steps. Only return the answer with no preamble. Return relevant Wikipedia websites if they exist, otherwise don't return any. Fix all formatting issues.
 
 Here are two example conversations:
 <examples>
 <example>
-U: <article>
+H: <article>
 <title>We must stop mask mandates before Biden and Democrats force them on us again. Here’s how we do it</title>
 <author>Sen. J.D. Vance  By Sen. J.D. Vance</author>
 <source>Fox News</source>
@@ -40,20 +38,63 @@ COVID may have taken American lives, but it can never again take Americans’ fr
 Republican J.D. Vance represents Ohio in the United States Senate.\n
 </content>
 </article>
-\\nAssistant:<info><text>"With years of experience and experimental study, the effects of masking are clear. There is no robust high-quality evidence that masking slows the spread of respiratory infections like COVID-19.<\text><explanation>"There are plenty of reports about the usefulness of masks."<\explanation><wkipedia_sources>"https://en.wikipedia.org/wiki/Face_masks_during_the_COVID-19_pandemic"<\wkipedia_sources><\info>
-</example1>
-<example2>
-\n\nUser: Check this article <article><title>Fred Rogers is a national hero</title><author>Billiam Smith</author><content>Fred Rogers served as a sniper during the Vietnam War and had a large number of confirmed kills.\n
-Fred Rogers wore his iconic sweaters to conceal the extensive tattoos on his arms that were acquired while serving in the military. \n</content></article> and return a verbatim list of passages from the source that are likely to contain either satire or factually incorrect information and display them in this format:<info><text>insert_text</text><explanation>insert_explanation<\explanation><wkipedia_sources>insert_wikipedia_sources</wkipedia_sources></info>. Think through your steps. Only return the answer with no preamble. Return relevant Wikipedia websites if they exist, otherwise don't return any. Fix all formatting issues.\n
-\\nAssistant:<info><text>Fred Rogers served as a sniper during the Vietnam War and had a large number of confirmed kills.</text>
-<explanation>This is false. Fred Rogers was never in the military. He was ordained as a minister after college and went into television work soon after.</explanation>
-<wikipedia_sources>https://en.wikipedia.org/wiki/Fred_Rogers#Early_years</wikipedia_sources>
-</info>\n
-<\info><text>Fred Rogers wore his iconic sweaters to conceal the extensive tattoos on his arms that were acquired while serving in the military.</text>
-<explanation>This is false. There is no evidence that Fred Rogers had any tattoos. He wore long sleeves to maintain his wholesome TV persona as "Mr. Rogers."</explanation>
-<wikipedia_sources>https://en.wikipedia.org/wiki/Fred_Rogers#Famous_sweaters</wikipedia_sources>
+
+A: <info>
+<text>
+With years of experience and experimental study, the effects of masking are clear. There is no robust high-quality evidence that masking slows the spread of respiratory infections like COVID-19.
+</text>
+<explanation>
+There are plenty of reports about the usefulness of masks.
+</explanation>
+<wikipedia_sources>
+https://en.wikipedia.org/wiki/Face_masks_during_the_COVID-19_pandemic
+</wikipedia_sources>
 </info>
-</example2></examples>
-\n\nUser: Check this article {query} and return a verbatim list of passages from the source that are likely to contain either satire or factually incorrect information and display them in this format:<info><text>insert_text</text><explanation>insert_explanation</explanation><wkipedia_sources>insert_wikipedia_sources</wkipedia_sources></info>. Think through your steps. Only return the answer with no preamble. Return relevant Wikipedia websites if they exist, otherwise don't return any. Fix all formatting issues.\n
-\\nAssistant:
+</example>
+<example>
+U: <article>
+<title>Fred Rogers is a national hero</title>
+<author>Billiam Smith</author>
+<content>Fred Rogers served as a sniper during the Vietnam War and had a large number of confirmed kills.\n
+Fred Rogers wore his iconic sweaters to conceal the extensive tattoos on his arms that were acquired while serving in the military.</content>
+</article>
+
+A: <info>
+<text>
+Fred Rogers served as a sniper during the Vietnam War and had a large number of confirmed kills.
+</text>
+<explanation>
+This is false. Fred Rogers was never in the military. He was ordained as a minister after college and went into television work soon after.
+</explanation>
+<wikipedia_sources>
+https://en.wikipedia.org/wiki/Fred_Rogers#Early_years
+</wikipedia_sources>
+</info>
+<text>
+Fred Rogers wore his iconic sweaters to conceal the extensive tattoos on his arms that were acquired while serving in the military.
+</text>
+<explanation>
+This is false. There is no evidence that Fred Rogers had any tattoos. He wore long sleeves to maintain his wholesome TV persona as "Mr. Rogers."
+</explanation>
+<wikipedia_sources>
+https://en.wikipedia.org/wiki/Fred_Rogers#Famous_sweaters
+</wikipedia_sources>
+</info>
+</example>
+</examples>
+
+
+User: {query}
+
+Return a verbatim list of passages from the source that are likely to contain either satire or factually incorrect information and display them in this format:
+<info>
+<text>insert_text</text>
+<explanation>insert_explanation</explanation>
+<wikipedia_sources>insert_wikipedia_sources</wikipedia_sources>
+</info>
+
+Think through your steps. Only return the answer with no preamble. Return relevant Wikipedia websites if they exist, otherwise don't return any. Fix all formatting issues.\n
+
+
+Assistant:
 """
