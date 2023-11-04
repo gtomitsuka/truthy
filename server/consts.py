@@ -11,9 +11,14 @@ insert_text
 <explanation>
 insert_explanation
 </explanation>
-<wikipedia_sources>
-insert_wikipedia_sources
-</wikipedia_sources>
+<sources>
+<source>
+insert_sources_one
+</source>
+<source>
+insert_source_two
+</source>
+</sources>
 </info>
 
 Here are two example conversations:
@@ -52,9 +57,11 @@ With years of experience and experimental study, the effects of masking are clea
 <explanation>
 There are plenty of reports about the usefulness of masks.
 </explanation>
-<wikipedia_sources>
+<sources>
+<source>
 https://en.wikipedia.org/wiki/Face_masks_during_the_COVID-19_pandemic
-</wikipedia_sources>
+</source>
+</sources>
 </info>
 </example>
 <example>
@@ -72,9 +79,11 @@ Fred Rogers served as a sniper during the Vietnam War and had a large number of 
 <explanation>
 This is false. Fred Rogers was never in the military. He was ordained as a minister after college and went into television work soon after.
 </explanation>
-<wikipedia_sources>
+<sources>
+<source>
 https://en.wikipedia.org/wiki/Fred_Rogers#Early_years
-</wikipedia_sources>
+</source>
+</sources>
 </info>
 <text>
 Fred Rogers wore his iconic sweaters to conceal the extensive tattoos on his arms that were acquired while serving in the military.
@@ -82,9 +91,14 @@ Fred Rogers wore his iconic sweaters to conceal the extensive tattoos on his arm
 <explanation>
 This is false. There is no evidence that Fred Rogers had any tattoos. He wore long sleeves to maintain his wholesome TV persona as "Mr. Rogers."
 </explanation>
-<wikipedia_sources>
+<sources>
+<source>
 https://en.wikipedia.org/wiki/Fred_Rogers#Famous_sweaters
-</wikipedia_sources>
+<source>
+<source>
+https://en.wikipedia.org/wiki/Fred_Rogers
+<source>
+</sources>
 </info>
 </example>
 </examples>
@@ -100,9 +114,14 @@ insert_text
 <explanation>
 insert_explanation
 </explanation>
-<wikipedia_sources>
-insert_wikipedia_sources
-</wikipedia_sources>
+<sources>
+<source>
+insert_source
+</source>
+<source>
+insert_source_two
+</source>
+</sources>
 </info>
 
 Think through your steps. Only return the answer with no preamble. Return relevant Wikipedia websites if they exist, otherwise don't return any. Fix all formatting issues.\n
