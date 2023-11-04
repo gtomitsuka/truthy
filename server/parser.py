@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import json
-
+import html
 
 def get_content(html_content):
   """Extracts content from a news article URL.
@@ -36,7 +36,7 @@ def get_content(html_content):
 
     # Main text of the article
     main_text = soup.find_all('p')
-    main_text = [p.text for p in main_text]
+    main_text = [html.unescape(p.text) for p in main_text]
     main_text = '\n'.join(main_text)
   else:
     main_text = json.loads(content)['articleBody']
