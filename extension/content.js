@@ -1,4 +1,4 @@
-function highlightText(text, explanation) {
+function highlightText(text, explanation, source) {
   if (!text) return; // Avoid running if the text is empty
 
   const searchTextSplit = text.toLowerCase().split(' ');
@@ -50,7 +50,7 @@ function highlightText(text, explanation) {
       range.setEnd(node, endPos);
       const highlightSpan = document.createElement('abbr');
       highlightSpan.className = 'highlighted-text';
-      highlightSpan.dataset.title = `${explanation}<br/><a href="a">View Reference</a>`;
+      highlightSpan.dataset.title = `${explanation}\nSource: ${source}`;
 
       range.surroundContents(highlightSpan);
 
@@ -63,11 +63,11 @@ function highlightText(text, explanation) {
 
 // Function to observe DOM changes
 function observeDOMChanges(data) {
-  data.forEach(misinfo => highlightText(misinfo['text'], misinfo['explanation']));
+  data.forEach(misinfo => highlightText(misinfo['text'], misinfo['explanation'], misinfo['sources']));
 
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      data.forEach(misinfo => highlightText(misinfo['text'], misinfo['explanation']));
+      data.forEach(misinfo => highlightText(misinfo['text'], misinfo['explanation'], misinfo['sources']));
     });
   });
 
