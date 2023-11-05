@@ -109,9 +109,7 @@ https://en.wikipedia.org/wiki/Fred_Rogers
 </examples>
 
 Human: Here are some sources that may be helpful based on the contents of the article: 
-{meta['sources']} 
-
-Human: {query}
+{query}
 
 Return a verbatim list of passages from the source that are likely to contain either satire or factually incorrect information and display them in this format:
 <info>

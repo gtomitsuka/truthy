@@ -63,11 +63,11 @@ function highlightText(text, explanation, source) {
 
 // Function to observe DOM changes
 function observeDOMChanges(data) {
-  data.forEach(misinfo => highlightText(misinfo['text'].replace('âĢĶ', '—'), misinfo['explanation'], misinfo['sources']));
+  data.forEach(misinfo => highlightText(misinfo['text'].replace('âĢĶ', '—').replace('âĢľ', '"').replace('âĢL·', '"').replace('âĢĻ', '\''), misinfo['explanation'], misinfo['sources']));
 
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      data.forEach(misinfo => highlightText(misinfo['text'].replace('âĢĶ', '—'), misinfo['explanation'], misinfo['sources'].join(', ')));
+      data.forEach(misinfo => highlightText(misinfo['text'].replace('âĢĶ', '—').replace('âĢľ', '"').replace('âĢL·', '"').replace('âĢĻ', '\''), misinfo['explanation'], misinfo['sources'].join(', ')));
     });
   });
 
@@ -84,7 +84,7 @@ function getPageHTML() {
 window.addEventListener('DOMContentLoaded', (event) => {
 	const htmlContent = getPageHTML();
 
-    fetch('https://0a85-5-148-66-108.ngrok-free.app/find', {
+    fetch('http://localhost:5001/find', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

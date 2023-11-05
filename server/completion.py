@@ -28,4 +28,4 @@ def format_query(title, main_text, author, source):
 
 
 def query(q, s):
-    return pipeline.run(query=q, meta={'sources': s})
+    return pipeline.run(query=f'{s}\n\nHuman: {q}')
