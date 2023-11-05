@@ -1,7 +1,7 @@
 function highlightText(text, explanation) {
   if (!text) return; // Avoid running if the text is empty
 
-  const searchTextLower = text.toLowerCase();
+  const searchTextLower = text.toLowerCase().split(' ').join('');
 
   // Create a filter to skip already highlighted nodes
   const acceptNode = node => {
@@ -21,19 +21,20 @@ function highlightText(text, explanation) {
   let node;
 
   while ((node = walker.nextNode())) {
-    const textNodeLower = node.nodeValue.toLowerCase();
-    let startPos = textNodeLower.indexOf(searchTextLower);
+    const textNodeLower = node.nodeValue.toLowerCase().split(' ').join('');
+    let startPos = textNodeLower.indexOf(searchTextLower);ä
 
     if (startPos > -1) {
       range.setStart(node, startPos);
       range.setEnd(node, startPos + searchTextLower.length);
       const highlightSpan = document.createElement('abbr');
       highlightSpan.className = 'highlighted-text';
-      highlightSpan.dataset.title = explanation;
+      highlightSpan.dataset.title = `${explanation}<br/><a href="a">View Reference</a>`;
+
       range.surroundContents(highlightSpan);
 
-      // Move the walker past the newly created highlightSpan
-      walker.currentNode = highlightSpan.nextSibling;
+      // text appears exactly once
+      break;
     }
   }
 
@@ -41,8 +42,17 @@ function highlightText(text, explanation) {
 
 // Function to observe DOM changes
 function observeDOMChanges(data) {
-  data.forEach(misinfo => {
-    highlightText(misinfo['text'], misinfo['explanation'])
+  data.forEach(misinfo => highlightText(misinfo['text'], misinfo['explanation']));
+
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      data.forEach(misinfo => highlightText(misinfo['text'], misinfo['explanation']));
+    });
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
   });
 }
 
@@ -67,3 +77,5 @@ window.addEventListener('DOMContentLoaded', (event) => {
     })
     .catch(error => console.error('Error:', error));
 });
+
+
