@@ -24,7 +24,7 @@ insert_source_two
 I want you to exactly copy the inserted text, this is very important and urgent.
 Please do not add extra spaces or newlines to the inserted text.
 There must be exactly one explanation and one text tag matching it per info object. There cannot be more than one of each.
-Each flagged occurrence needs to be in their own info block. There can be any number of info blocks, please output as many as necessary. If there are no flagged occurrences, please return <info>""</info>.
+Each flagged occurrence needs to be in their own info block. There can be any number of info blocks, please output as many as necessary. If there are no flagged occurrences, please return "".
 
 Here are two example conversations:
 <examples>
@@ -130,7 +130,7 @@ insert_source_two
 </sources>
 </info>
 
-If you can't find any passages as described, return <info>""</info>.
+If you can't find any passages as described, return "".
 
 Think through your steps. Only return the answer with no preamble. Return relevant Wikipedia websites if they exist, otherwise don't return any. Fix all formatting issues.\n
 
