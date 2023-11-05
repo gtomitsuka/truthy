@@ -26,7 +26,7 @@ def find():
     misinfo_xml = root.findall('.//info')
     misinfo_list = []
     for misinfo_xml_element in misinfo_xml:
-        text = misinfo_xml_element.find('.//text').text.strip().strip('\n')
+        text = misinfo_xml_element.find('.//text').text.strip().strip('\n').replace(" n't", "n't").replace("buy back", "buyback").replace("any one", "anyone")
         explanation = misinfo_xml_element.find('.//explanation').text.strip().strip('\n')
         sources = [source.find('.//source').text.strip().strip('\n') for source in misinfo_xml_element.findall('.//sources')]
         misinfo_list.append({'text': text, 'explanation': explanation, 'sources': sources})
