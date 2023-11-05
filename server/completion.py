@@ -27,5 +27,5 @@ def format_query(title, main_text, author, source):
     return f"""<article>\n<title>{title}</title>\n<author>{author}</author>\n<source>{source}</source>\n<content>{main_text}</content>\n</article>"""
 
 
-def query(q):
-    return pipeline.run(query=q)
+def query(q, s):
+    return pipeline.run(query=q, meta={'sources': s})
