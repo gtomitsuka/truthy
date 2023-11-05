@@ -67,7 +67,7 @@ function observeDOMChanges(data) {
 
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
-      data.forEach(misinfo => highlightText(misinfo['text'], misinfo['explanation'], misinfo['sources'].join(', ')));
+      data.forEach(misinfo => highlightText(misinfo['text'].replace('âĢĶ', '—'), misinfo['explanation'], misinfo['sources'].join(', ')));
     });
   });
 
