@@ -34,6 +34,13 @@
 			"source": "Wikipedia",
 			"source_title": "Anthony Fauci",
 			"source_link": "https://en.wikipedia.org/wiki/Anthony_Fauci"
+		},
+		{
+			"claim": "Fauci purportedly said 'all unvaccinated citizens must be locked down this winter'",
+			"rating": "False",
+			"source": "Fact Check Tools",
+			"source_title": "claims Dr. Anthony Fauci purportedly said 'all unvaccinated citizens must be locked down this winter'",
+			"source_link": "https://checkyourfact.com/2023/08/29/fact-check-fauci-unvaccinated-locked-down-winter/"
 		}
 	]
 }
