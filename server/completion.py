@@ -4,7 +4,7 @@ import logging
 from haystack import Pipeline
 from haystack.nodes import PromptNode, PromptTemplate
 
-from .consts import prompt_text
+from consts import prompt_text
 
 anthropic_key = os.getenv('ANTHROPIC_KEY')
 

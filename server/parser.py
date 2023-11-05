@@ -28,7 +28,6 @@ def get_content(html_content):
   # website, title, author, content
   source = json.loads(content)['publisher']['name']
   title = json.loads(content)['headline']
-  print(json.loads(content).keys())
 
   if source in ['Daily Mail', 'The Sun']:
     # Title
@@ -47,4 +46,4 @@ def get_content(html_content):
   elif type(author) == list:
     author = author[0]['name']
 
-  return (title, main_text, author, source)
+  return title, main_text, author, source

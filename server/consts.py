@@ -21,6 +21,8 @@ insert_source_two
 </sources>
 </info>
 
+Please do not add extra spaces or newlines to the inserted text.
+
 Here are two example conversations:
 <examples>
 <example>

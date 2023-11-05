@@ -1,4 +1,4 @@
 farm-haystack[inference]
-flask
-beautifulsoup4
+flask~=3.0.0
+beautifulsoup4~=4.12.2
 flask-cors
