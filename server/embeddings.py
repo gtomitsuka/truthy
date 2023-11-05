@@ -56,6 +56,5 @@ def search(paragraphs):
                                      'source_title': rows['source_title'],
                                      'source_link': rows['source_link'],
                                      'distance': distances})
-  print(query_results[["claims", "distance"]])
 
   return query_results
