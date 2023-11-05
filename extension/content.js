@@ -63,7 +63,7 @@ function highlightText(text, explanation, source) {
 
 // Function to observe DOM changes
 function observeDOMChanges(data) {
-  data.forEach(misinfo => highlightText(misinfo['text'], misinfo['explanation'], misinfo['sources']));
+  data.forEach(misinfo => highlightText(misinfo['text'].replace('âĢĶ', '—'), misinfo['explanation'], misinfo['sources']));
 
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
