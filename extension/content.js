@@ -22,7 +22,7 @@ function highlightText(text, explanation) {
 
   while ((node = walker.nextNode())) {
     const textNodeLower = node.nodeValue.toLowerCase().split(' ').join('');
-    let startPos = textNodeLower.indexOf(searchTextLower);ä
+    let startPos = textNodeLower.indexOf(searchTextLower);
 
     if (startPos > -1) {
       range.setStart(node, startPos);
@@ -63,7 +63,7 @@ function getPageHTML() {
 window.addEventListener('DOMContentLoaded', (event) => {
 	const htmlContent = getPageHTML();
 
-    fetch('https://ad71-5-148-66-108.ngrok-free.app/find', {
+    fetch('http://localhost:5000/find', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
