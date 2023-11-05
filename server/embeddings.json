@@ -4,15 +4,29 @@
 			"claim": "Mass shooting casualties in the Netherlands, Belgium, and France are as high as in the United States",
 			"rating": false,
 			"source": "WiseVoter",
-			"source_title": "Mass shootings by country",
+			"source_title": "The United States has consistently been the country with the most mass shootings in the world",
 			"source_link": "https://wisevoter.com/country-rankings/mass-shootings-by-country/"
 		},
 		{
 			"claim": "Mass shooting casualties in the Netherlands, Belgium, and France are as high as in the United States",
 			"rating": false,
 			"source": "TRTWorld",
-			"source_title": "US accounted for 73 percent of global mass shootings",
+			"source_title": "The US accounts for 73 percent of 139 mass shootings that occurred in developed countries between 1998 to 2019",
 			"source_link": "https://www.trtworld.com/magazine/us-accounted-for-73-percent-of-global-mass-shootings-12787908"
+		},
+		{
+			"claim": "Mass shooting casualties in the Netherlands, Belgium, and France are as high as in the United States",
+			"rating": false,
+			"source": "The Institute for Health Metrics and Evaluation",
+			"source_title": "On gun violence, the United States is an outlier",
+			"source_link": "https://www.healthdata.org/news-events/insights-blog/acting-data/gun-violence-united-states-outlier"
+		},
+		{
+			"claim": "Mass shooting casualties in the Netherlands, Belgium, and France are as high as in the United States",
+			"rating": false,
+			"source": "Wikipedia",
+			"source_title": "Firearm homicide rates are over four times higher in the USA than any other country in the developed world",
+			"source_link": "https://en.wikipedia.org/wiki/List_of_countries_by_firearm-related_death_rate"
 		}
 	]
 }
