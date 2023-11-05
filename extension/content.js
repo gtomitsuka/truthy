@@ -1,7 +1,8 @@
 function highlightText(text, explanation) {
   if (!text) return; // Avoid running if the text is empty
 
-  const searchTextLower = text.toLowerCase().split(' ').join('');
+  const searchTextSplit = text.toLowerCase().split(' ');
+  const searchTextLower = searchTextSplit.join('');
 
   // Create a filter to skip already highlighted nodes
   const acceptNode = node => {
@@ -21,13 +22,12 @@ function highlightText(text, explanation) {
   let node;
 
   while ((node = walker.nextNode())) {
-    const textNodeSplit = node.nodeValue.toLowerCase().split(' ');
-    const textNodeLower = textNodeSplit.join('');
+    const textNodeLower = node.nodeValue.toLowerCase().split(' ').join('');
     let startPos = textNodeLower.indexOf(searchTextLower);
 
     if (startPos > -1) {
       range.setStart(node, startPos);
-      range.setEnd(node, startPos + searchTextLower.length + textNodeSplit.length - 1);
+      range.setEnd(node, startPos + searchTextLower.length + searchTextSplit.length - 1);
       const highlightSpan = document.createElement('abbr');
       highlightSpan.className = 'highlighted-text';
       highlightSpan.dataset.title = `${explanation}<br/><a href="a">View Reference</a>`;
@@ -64,7 +64,7 @@ function getPageHTML() {
 window.addEventListener('DOMContentLoaded', (event) => {
 	const htmlContent = getPageHTML();
 
-    fetch('https://22b1-5-148-66-108.ngrok-free.app/find', {
+    fetch('https://b784-5-148-66-108.ngrok-free.app', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
