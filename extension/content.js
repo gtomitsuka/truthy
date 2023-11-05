@@ -29,7 +29,8 @@ function highlightText(text, explanation) {
       range.setEnd(node, startPos + searchTextLower.length);
       const highlightSpan = document.createElement('abbr');
       highlightSpan.className = 'highlighted-text';
-      highlightSpan.dataset.title = explanation;
+      highlightSpan.dataset.title = `${explanation}<br/><a href="a">View Reference</a>`;
+
       range.surroundContents(highlightSpan);
 
       // text appears exactly once
@@ -41,6 +42,8 @@ function highlightText(text, explanation) {
 
 // Function to observe DOM changes
 function observeDOMChanges(data) {
+  data.forEach(misinfo => highlightText(misinfo['text'], misinfo['explanation']));
+
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       data.forEach(misinfo => highlightText(misinfo['text'], misinfo['explanation']));
