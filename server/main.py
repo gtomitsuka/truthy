@@ -26,11 +26,11 @@ def find():
     misinfo_xml = root.findall('.//info')
     misinfo_list = []
     for misinfo_xml_element in misinfo_xml:
-        text = misinfo_xml_element.find('.//text').text
-        explanation = misinfo_xml_element.find('.//explanation').text
-        sources = [source.find('.//source').text for source in misinfo_xml_element.findall('.//sources')]
+        text = misinfo_xml_element.find('.//text').text.strip().strip('\n')
+        explanation = misinfo_xml_element.find('.//explanation').text.strip().strip('\n')
+        sources = [source.find('.//source').text.strip().strip('\n') for source in misinfo_xml_element.findall('.//sources')]
         misinfo_list.append({'text': text, 'explanation': explanation, 'sources': sources})
-    return jsonify({'results': misinfo_list}), 200
+    return jsonify({'segments': misinfo_list}), 200
   except:
     traceback.print_exc()
     return jsonify({'error': 'Failed to parse'}), 400

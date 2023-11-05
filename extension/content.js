@@ -66,14 +66,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(htmlContent)
-    }).then(response => response.json())
-        .then(data => {
-          observeDOMChanges(data['results']);
-          chrome.runtime.sendMessage({ highlightCount: data['results'].length});
-        })
-        .catch(error => console.error('Error:', error));
-	// highlightText('Hamas is attempting to sneak militants out of the Gaza Strip among civilians under evacuation.');
-
+    })
+    .then(response => response.json())
+    .then(data => {
+      observeDOMChanges(data['segments']);
+      chrome.runtime.sendMessage({ highlightCount: data['segments'].length });
+    })
+    .catch(error => console.error('Error:', error));
 });
-
-
