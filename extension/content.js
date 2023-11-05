@@ -21,12 +21,13 @@ function highlightText(text, explanation) {
   let node;
 
   while ((node = walker.nextNode())) {
-    const textNodeLower = node.nodeValue.toLowerCase().split(' ').join('');
-    let startPos = textNodeLower.indexOf(searchTextLower);ä
+    const textNodeSplit = node.nodeValue.toLowerCase().split(' ');
+    const textNodeLower = textNodeSplit.join('');
+    let startPos = textNodeLower.indexOf(searchTextLower);
 
     if (startPos > -1) {
       range.setStart(node, startPos);
-      range.setEnd(node, startPos + searchTextLower.length);
+      range.setEnd(node, startPos + searchTextLower.length + textNodeSplit.length);
       const highlightSpan = document.createElement('abbr');
       highlightSpan.className = 'highlighted-text';
       highlightSpan.dataset.title = `${explanation}<br/><a href="a">View Reference</a>`;
