@@ -1,7 +1,7 @@
 function highlightText(text, explanation) {
   if (!text) return; // Avoid running if the text is empty
 
-  const searchTextLower = text.toLowerCase();
+  const searchTextLower = text.toLowerCase().split(' ').join('');
 
   // Create a filter to skip already highlighted nodes
   const acceptNode = node => {
@@ -21,8 +21,8 @@ function highlightText(text, explanation) {
   let node;
 
   while ((node = walker.nextNode())) {
-    const textNodeLower = node.nodeValue.toLowerCase();
-    let startPos = textNodeLower.indexOf(searchTextLower);
+    const textNodeLower = node.nodeValue.toLowerCase().split(' ').join('');
+    let startPos = textNodeLower.indexOf(searchTextLower);ä
 
     if (startPos > -1) {
       range.setStart(node, startPos);
@@ -32,8 +32,8 @@ function highlightText(text, explanation) {
       highlightSpan.dataset.title = explanation;
       range.surroundContents(highlightSpan);
 
-      // Move the walker past the newly created highlightSpan
-      walker.currentNode = highlightSpan.nextSibling;
+      // text appears exactly once
+      break;
     }
   }
 
@@ -72,8 +72,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
           chrome.runtime.sendMessage({ highlightCount: data['results'].length});
         })
         .catch(error => console.error('Error:', error));
-	// highlightText('Hamas is attempting to sneak militants out of the Gaza Strip among civilians under evacuation.');
-
 });
 
 
