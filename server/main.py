@@ -5,6 +5,7 @@ import traceback
 
 from completion import query, format_query
 from parser import get_content
+from embeddings import search
 
 app = Flask(__name__)
 cors = CORS(app,
@@ -19,6 +20,7 @@ def find():
     return jsonify({'error': 'Invalid JSON'}), 400
   try:
     title, main_text, author, source = get_content(data)
+    search([title, *main_text.split('\n\n')])
     formatted_query = format_query(title, main_text, author, source)
     completion = query(formatted_query)
     xml = '<root>' + completion['results'][0] + '</root>'
