@@ -41,15 +41,8 @@ function highlightText(text, explanation) {
 
 // Function to observe DOM changes
 function observeDOMChanges(data) {
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      data.forEach(misinfo => highlightText(misinfo['text'], misinfo['explanation']));
-    });
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
+  data.forEach(misinfo => {
+    highlightText(misinfo['text'], misinfo['explanation'])
   });
 }
 
