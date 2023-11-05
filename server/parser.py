@@ -29,16 +29,16 @@ def get_content(html_content):
   source = json.loads(content)['publisher']['name']
   title = json.loads(content)['headline']
 
-  if source in ['Daily Mail', 'The Sun']:
+  if source in { 'Daily Mail', 'The Sun' }:
     # Title
     title = soup.find('title').text
 
     # Main text of the article
-    main_text = soup.find_all('p')
-    main_text = [html.unescape(p.text) for p in main_text]
+    main_text = [html.unescape(p.text) for p in soup.find_all('p')]
     main_text = '\n'.join(main_text)
   else:
-    main_text = json.loads(content)['articleBody']
+    main_text = [html.unescape(p.text) for p in soup.find_all('p')]
+    main_text = '\n'.join(main_text)
 
   author = json.loads(content)['author']
   if type(author) == dict:

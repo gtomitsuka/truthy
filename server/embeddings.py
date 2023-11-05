@@ -9,7 +9,7 @@ import pandas as pd
 cohere_key = os.getenv('COHERE_KEY')
 co = cohere.Client(cohere_key)
 
-with open('server/embeddings.json') as embeddings_file:
+with open('embeddings.json') as embeddings_file:
   sources_json = embeddings_file.read()
 
 sources = json.loads(sources_json)['information']
