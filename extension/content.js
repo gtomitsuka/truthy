@@ -27,7 +27,7 @@ function highlightText(text, explanation) {
 
     if (startPos > -1) {
       range.setStart(node, startPos);
-      range.setEnd(node, startPos + searchTextLower.length + textNodeSplit.length);
+      range.setEnd(node, startPos + searchTextLower.length + textNodeSplit.length - 1);
       const highlightSpan = document.createElement('abbr');
       highlightSpan.className = 'highlighted-text';
       highlightSpan.dataset.title = `${explanation}<br/><a href="a">View Reference</a>`;
@@ -64,7 +64,7 @@ function getPageHTML() {
 window.addEventListener('DOMContentLoaded', (event) => {
 	const htmlContent = getPageHTML();
 
-    fetch('https://ad71-5-148-66-108.ngrok-free.app/find', {
+    fetch('https://22b1-5-148-66-108.ngrok-free.app/find', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
