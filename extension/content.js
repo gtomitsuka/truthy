@@ -48,7 +48,6 @@ function highlightText(text, explanation) {
       // Ensure that the end position does not exceed the node's length
       endPos = Math.min(endPos, node.nodeValue.length);
       range.setEnd(node, endPos);
-      
       const highlightSpan = document.createElement('abbr');
       highlightSpan.className = 'highlighted-text';
       highlightSpan.dataset.title = `${explanation}<br/><a href="a">View Reference</a>`;
