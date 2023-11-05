@@ -20,7 +20,6 @@ embeds = co.embed(texts=list(source_df['claim']),
                   input_type='search_document').embeddings
 
 search_index = AnnoyIndex(np.array(embeds).shape[1], 'angular')
-
 # Add all the vectors to the search index
 for i in range(len(embeds)):
     search_index.add_item(i, embeds[i])
@@ -51,7 +50,7 @@ def search(paragraphs):
 
   rows = source_df.iloc[list(similar_item_indices)]
 
-  query_results = pd.DataFrame(data={'claims': rows['claim'],
+  query_results = pd.DataFrame(data={'claim': rows['claim'],
                                      'rating': rows['rating'],
                                      'source': rows['source'],
                                      'source_title': rows['source_title'],

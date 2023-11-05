@@ -17,12 +17,14 @@ cors = CORS(app,
 def find():
   data = request.json
   if not data:
-    return jsonify({'error': 'Invalid JSON'}), 400
+    return jsonify({'error': 'Invalid JSON', 'segments': []}), 400
   try:
     title, main_text, author, source = get_content(data)
-    search([title, *main_text.split('\n\n')])
+    search_res = search([title, *main_text.split('\n\n')])
+    df_string = '\n\n'.join(search_res.apply(lambda row: f'Claim: {row["claim"]}\nRating: {row["rating"]}\nSource: {row["source_title"]} ({row["source"]})\nSource URL: {row["source_link"]}', axis=1).tolist())
     formatted_query = format_query(title, main_text, author, source)
-    completion = query(formatted_query)
+    print(df_string)
+    completion = query(formatted_query, df_string)
     xml = '<root>' + completion['results'][0] + '</root>'
     root = ET.fromstring(xml)
     misinfo_xml = root.findall('.//info')
@@ -35,8 +37,8 @@ def find():
     return jsonify({'segments': misinfo_list}), 200
   except:
     traceback.print_exc()
-    return jsonify({'error': 'Failed to parse'}), 400
+    return jsonify({'error': 'Failed to parse', 'segments': []}), 400
 
 
 if __name__ == '__main__':
-  app.run(debug=True, port=5000)
+  app.run(debug=True, port=5001)
