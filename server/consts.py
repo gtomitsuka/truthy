@@ -21,6 +21,11 @@ insert_source_two
 </sources>
 </info>
 
+I want you to exactly copy the inserted text, this is very important and urgent.
+Please do not add extra spaces or newlines to the inserted text.
+There must be exactly one explanation and one text tag matching it per info object. There cannot be more than one of each.
+Each flagged occurrence needs to be in their own info block. There can be any number of info blocks, please output as many as necessary. If there are no flagged occurrences, please do not output any info blocks.
+
 Here are two example conversations:
 <examples>
 <example>

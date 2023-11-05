@@ -66,12 +66,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(htmlContent)
-    }).then(response => response.json())
-        .then(data => {
-          observeDOMChanges(data['results']);
-          chrome.runtime.sendMessage({ highlightCount: data['results'].length});
-        })
-        .catch(error => console.error('Error:', error));
+    })
+    .then(response => response.json())
+    .then(data => {
+      observeDOMChanges(data['segments']);
+      chrome.runtime.sendMessage({ highlightCount: data['segments'].length });
+    })
+    .catch(error => console.error('Error:', error));
 });
 
 

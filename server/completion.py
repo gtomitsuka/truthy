@@ -4,7 +4,7 @@ import logging
 from haystack import Pipeline
 from haystack.nodes import PromptNode, PromptTemplate
 
-from .consts import prompt_text
+from consts import prompt_text
 
 anthropic_key = os.getenv('ANTHROPIC_KEY')
 
@@ -13,7 +13,7 @@ prompt_node = PromptNode(
     model_name_or_path="claude-2",
     default_prompt_template=PromptTemplate(prompt_text),
     api_key=anthropic_key,
-    max_length=10000,
+    max_length=50000,
     model_kwargs={"stream": stream},
 )
 
